@@ -23,15 +23,27 @@ jobs:
         echo "$SSH_PRIVATE_KEY" > private_key.pem
         chmod 600 private_key.pem
         ssh -o StrictHostKeyChecking=no -i private_key.pem $EC2_USER@$EC2_HOST << 'EOF'
-          cd $APP_DIR
+          cd /var/www/Ecommerce-product-laravel  # ✅ Ensure all commands run in the right directory
+          
+          echo "Pulling latest changes from Git..."
           git pull origin main
+
+          echo "Installing PHP dependencies..."
           composer install --no-dev --optimize-autoloader
+
+          echo "Running database migrations..."
           php artisan migrate --force
+
+          echo "Clearing and caching Laravel config..."
           php artisan config:cache
           php artisan route:cache
           php artisan view:cache
+
+          echo "Installing frontend dependencies..."
           npm install
           npm run build
+
+          echo "Restarting Nginx and PHP-FPM..."
           sudo systemctl restart nginx
           sudo systemctl restart php-fpm
         EOF
