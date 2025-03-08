@@ -88,10 +88,10 @@
                                     </svg>
                                 </div>
 
-                                <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Laravel News Testing</h2>
+                                <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Laravel News Testingxxxx</h2>
 
                                 <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                    Testing part 2.
+                                    New Testing part 2.
                                 </p>
                             </div>
 
